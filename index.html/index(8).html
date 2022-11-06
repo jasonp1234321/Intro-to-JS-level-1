@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Up and Down</title>
+        <style></style>
+        <script>
+
+            function initialize()
+            {
+                //The HTML object for the display.
+                numberOutput = document.getElementById("numberout");
+                negativeButton = document.getElementById("negativebtn");
+
+                myNumber = 0;
+                negativeAllowed = false;
+
+                display();
+            }
+
+            function toggleNegatives(){
+                negativeAllowed = !negativeAllowed;
+                display();
+            }
+
+            function addOne()
+            {
+                myNumber++;
+                display();
+            }
+function subtractOne()
+            {
+                myNumber--;
+                if(myNumber < 0 && !negativeAllowed){
+                    myNumber = 0;
+                }
+                display();
+
+            }
+
+            /*
+                display
+
+                Displays the updated number.
+
+                It's very important, as a programmer, that you distinguish between your back end, the variables and working parts of the program, and the front end, the display and the interface.
+
+                In this program, I have created a back end variable (myNumber) that represents the changing number.
+
+                The display function takes that number, whatever it is, and copies its value into the innerHTML of numberOutput, an HTML element (an h1).
+
+                The output IS NOT the number.  It is a way to show the number.  Think of it like this.  If you are happy, you smile.  If you are angry, you frown.  The smile and the frown are not your emotions.  They are a display of your emotions on your face.
+
+                numberOutput.innerHTML is NOT the number.  It is simply a way to display the number.
+            */
+            function display()
+            {
+                numberOutput.innerHTML = myNumber;
+
+                if(!negativeAllowed){
+                    negativeButton.innerHTML = "Negatives are OFF";
+                }
+                else{
+                    negativeButton.innerHTML = "Negatives are ON";
+                }
+            }
+        </script>
+    </head>
+
+    <body onload = "initialize();">
+        <h1 id = "numberout"></h1>
+        <hr />
+        <button onclick = "addOne();">Add</button> <button onclick = "subtractOne();">Subtract</button>
+        <button onclick = "toggleNegatives();" id = "negativebtn">Negatives are OFF</button>
+    </body>
+</html>
